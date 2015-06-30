@@ -1,0 +1,15 @@
+<h1>Listing Photos</h1>
+
+<%= link_to 'Home', root_path %> | 
+
+<%= link_to 'New Photo', new_user_photo_path(current_user) %>
+
+<ul>
+	<% @photos.each do |photo| %>
+		<% if photo.user_id == current_user.id %>
+			<%= link_to image_tag(photo.image_url), user_photo_path(current_user, photo) %>
+		<% elsif photo.public? %>
+			<%= link_to image_tag(photo.image_url), photo_path(photo) %>
+		<% end %>
+	<% end %>
+</ul>

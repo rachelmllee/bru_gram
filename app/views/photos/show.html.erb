@@ -1,0 +1,28 @@
+<h2><strong><%= @photo.name %></strong></h2>
+
+<% author_id = @photo.user_id %>
+<% @author = User.find(author_id) %>
+
+<h3>Published by <%= @author.email %></h3>
+
+<%= image_tag(@photo.image_url) %>
+
+<p><%= @photo.caption %></p>
+
+<p><% if @photo.public? %>
+	Photo is public
+<% else %>
+	Photo is not public
+<% end %></p>
+
+<h2>Comments:</h2>
+<%= render @photo.comments %>
+
+<h3>Add a comment:</h3>
+<%= render 'comments/form' %>
+
+<% if @user.id == @photo.user_id %>
+	<%= link_to 'Edit', edit_user_photo_path(@user, @photo) %> |
+	<%= link_to 'Destroy', user_photo_path(@user, @photo), method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
+<%= link_to 'Back', user_photos_path(@user) %>

@@ -1,0 +1,7 @@
+<h1>Welcome to BruGram!</h1>
+
+<% if user_signed_in? %>
+	<%= link_to 'Profile', user_photos_path(current_user) %>
+<% else %>
+	<p>Sign in or sign up to start.</p>
+<% end %>
