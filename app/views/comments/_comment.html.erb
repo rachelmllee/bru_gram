@@ -8,8 +8,9 @@
 	<%= comment.body %>
 </p>
 
-<p>
-  <%= link_to 'Destroy Comment', [comment.photo, comment],
+<% if current_user == comment.user %>
+	<%= link_to 'Edit Comment', edit_photo_comment_path(@photo, comment) %> | 
+	<%= link_to 'Destroy Comment', [comment.photo, comment],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
-</p>
+<% end %>
