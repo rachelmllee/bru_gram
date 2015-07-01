@@ -1,5 +1,14 @@
-<h1>Editing Photo</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', user_photo_path(@user, @photo) %>
+<!-- About -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Editing Photo</h2>
+                <p class="lead"><%= render 'form' %></p>
+            </div>
+        </div>
+        <!-- /.row -->
+        <%= button_to "Back", user_photo_path(@user, @photo), :class => "btn btn-dark btn-lg", :method => :get %>
+    </div>
+    <!-- /.container -->
+</section>

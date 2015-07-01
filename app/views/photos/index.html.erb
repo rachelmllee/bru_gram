@@ -1,15 +1,24 @@
-<h1>Listing Photos</h1>
-
-<%= link_to 'Home', root_path %> | 
-
-<%= link_to 'New Photo', new_user_photo_path(current_user) %>
-
-<ul>
-	<% @photos.each do |photo| %>
-		<% if photo.user_id == current_user.id %>
-			<%= link_to image_tag(photo.image_url), user_photo_path(current_user, photo) %>
-		<% elsif photo.public? %>
-			<%= link_to image_tag(photo.image_url), photo_path(photo) %>
+<!-- About -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Listing Photos</h2>
+                <p><%= link_to 'Home', root_path %> | 
+                <%= link_to 'New Photo', new_user_photo_path(current_user) %></p>
+            </div>
+        </div>
+        <!-- /.row -->
+    <ul>
+		<% @photos.each do |photo| %>
+			<% if photo.user_id == current_user.id %>
+				<%= link_to image_tag(photo.image_url), user_photo_path(current_user, photo) %>
+			<% elsif photo.public? %>
+				<%= link_to image_tag(photo.image_url), photo_path(photo) %>
+			<% end %>
 		<% end %>
-	<% end %>
-</ul>
+	</ul>
+    </div>
+    <!-- /.container -->
+</section>
+

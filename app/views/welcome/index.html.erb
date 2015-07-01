@@ -1,7 +1,11 @@
-<h1>Welcome to BruGram!</h1>
+<header id="top" class="header">
+    <div class="text-vertical-center">
+        <h1>Welcome to Bru-Gram!</h1>
+        <% if user_signed_in? %>
+        	<%= button_to "Profile", user_photos_path(current_user), :class => "btn btn-dark btn-lg", :method => :get %>
+        <% else %>
+        	<h3>Sign in or sign up to start.</h3>
+        <% end %>
+    </div>
+</header>
 
-<% if user_signed_in? %>
-	<%= link_to 'Profile', user_photos_path(current_user) %>
-<% else %>
-	<p>Sign in or sign up to start.</p>
-<% end %>

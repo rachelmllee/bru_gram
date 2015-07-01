@@ -1,25 +1,37 @@
-<h2><strong><%= @photo.name %></strong></h2>
+<!-- About -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2><%= @photo.name %></h2>
+                <h3>Published by <%= @author.email %></h3>
+                <br>
+                <p><%= image_tag(@photo.image_url) %></p>
+                <br>
+                <p><%= @photo.caption %></p>
+            </div>
+            <div class="col-lg-12">
+            	<h4>Comments:</h4>
+            	<%= render @photo.comments %>
+            	<br>
+            	<h4>Add a comment:</h4>
+            	<%= render 'comments/form' %>
+            </div>
+            <div class="col-lg-12 text-center">
+                <% if @user.id == @photo.user_id %>
+                	<%= link_to 'Edit Photo', edit_user_photo_path(current_user, @photo) %> |
+                	<%= link_to 'Destroy Photo', user_photo_path(current_user, @photo), method: :delete, data: { confirm: 'Are you sure?' } %> |
+                <% end %>
+                <%= link_to 'Back', user_photos_path(current_user) %>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
 
-<h3>Published by <%= @author.email %></h3>
 
-<%= image_tag(@photo.image_url) %>
 
-<p><%= @photo.caption %></p>
 
-<p><% if @photo.public? %>
-	Photo is public
-<% else %>
-	Photo is not public
-<% end %></p>
 
-<h2>Comments:</h2>
-<%= render @photo.comments %>
 
-<h3>Add a comment:</h3>
-<%= render 'comments/form' %>
-
-<% if @user.id == @photo.user_id %>
-	<%= link_to 'Edit Photo', edit_user_photo_path(current_user, @photo) %> |
-	<%= link_to 'Destroy Photo', user_photo_path(current_user, @photo), method: :delete, data: { confirm: 'Are you sure?' } %> |
-<% end %>
-<%= link_to 'Back', user_photos_path(current_user) %>
